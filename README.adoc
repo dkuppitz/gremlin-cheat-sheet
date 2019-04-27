@@ -1,0 +1,12 @@
+= Gremlin Cheat Sheet
+
+== Build Instructions
+
+[source,bash]
+----
+$ sudo apt update
+$ sudo apt install asciidoc asciidoctor
+$ sudo gem install asciidoctor asciidoctor-pdf
+$ ./build.sh
+----
+
