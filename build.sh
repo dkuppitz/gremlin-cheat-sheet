@@ -9,3 +9,5 @@ touch docs/.nojekyll
 
 asciidoctor cheat-sheet.adoc && mv cheat-sheet.html docs/index.html
 asciidoctor-pdf cheat-sheet*.adoc && mv *.pdf pdf/
+
+ls pdf/ | xargs -n1 -I {} pdfcrop --margins 50 pdf/{} pdf/{}

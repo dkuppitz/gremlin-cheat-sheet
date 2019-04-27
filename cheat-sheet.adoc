@@ -1,3 +1,8 @@
+:pdf-page-size: [8.25in, 100in]
+:author: Daniel Kuppitz
+:email: me@gremlin.guru
+:nofooter:
+
 = Gremlin Cheat Sheet
 
 == Read-Only Traversals
