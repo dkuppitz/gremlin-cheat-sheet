@@ -582,6 +582,10 @@ gremlin&gt; g.V().hasLabel("person").valueMap("name","age")
 <td class="tableblock halign-left valign-top"><p class="tableblock">get all adjacent vertices connected by outgoing edges with the specified labels</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in(label1, label2, &#8230;&#8203;)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get all adjacent vertices connected by incoming edges with the specified labels</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outE(label1, label2, &#8230;&#8203;)</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">get all outgoing edges with the specified labels</p></td>
 </tr>
@@ -653,6 +657,18 @@ gremlin&gt; g.V().has("software","name","lop").in("created").values("name")
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Predicates are static methods provided by <a href="http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/P.html">P</a> and <a href="http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/TextP.html">TextP</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="_examples_4">Examples</h4>
 <div class="listingblock">
@@ -709,6 +725,10 @@ gremlin&gt; g.V(1).as("other").
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fold()</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">fold all current elements into a single list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unfold()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unfold the incoming list and continue processing each element individually</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>count()</code></p></td>

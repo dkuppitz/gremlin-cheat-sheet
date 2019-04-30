@@ -85,6 +85,7 @@ gremlin> g.V().hasLabel("person").valueMap("name","age")
 |===========================================================================================================================================
 | Steps                                 | Meaning
 | `out(label1, label2, ...)`            | get all adjacent vertices connected by outgoing edges with the specified labels
+| `in(label1, label2, ...)`             | get all adjacent vertices connected by incoming edges with the specified labels
 | `outE(label1, label2, ...)`           | get all outgoing edges with the specified labels
 | `inE(label1, label2, ...)`            | get all incoming edges with the specified labels
 | `both(label1, label2, ...)`           | get all adjacent vertices connected by an edge with the specified labels
@@ -119,6 +120,8 @@ gremlin> g.V().has("software","name","lop").in("created").values("name")
 | `not(traversal)`      | keep the current element if the provided traversal doesn't emit a result
 | `where(predicate)`    | keep the current element if it matches the predicate referencing another element
 |=========================================================================================================
+
+NOTE: Predicates are static methods provided by http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/P.html[P] and http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/TextP.html[TextP].
 
 ==== Examples
 
@@ -155,6 +158,7 @@ gremlin> g.V(1).as("other").
 | `aggregate(key)`               | store all elements held by all current traversers in the side-effect with the provided key
 | `group([key]).by(keySelector)` | group all current elements by the provided `keySelector`; group into a side-effect if a side-effect `key` was provided, otherwise emit the result immediately
 | `fold()`                       | fold all current elements into a single list
+| `unfold()`                     | unfold the incoming list and continue processing each element individually
 | `count()`                      | count the number of current elements
 | `min()/max()`                  | find the min/max value
 | `sum()`                        | compute the sum of all current values
