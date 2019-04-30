@@ -57,7 +57,10 @@
 | `where(predicate)`    | keep the current element if it matches the predicate referencing another element
 |=========================================================================================================
 
-NOTE: Predicates are static methods provided by http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/P.html[P] and http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/TextP.html[TextP].
+NOTE: Predicates are used to compare values based on equality, ranges or certain patterns. All TinkerPop predicates
+are implemented as static methods; a full list of TinkerPop predicates can be found in the JavaDocs for
+http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/P.html[P] and
+http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/TextP.html[TextP].
 
 [[aggregations]]
 === Aggregations

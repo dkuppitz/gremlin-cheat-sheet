@@ -664,7 +664,10 @@ gremlin&gt; g.V().has("software","name","lop").in("created").values("name")
 <div class="title">Note</div>
 </td>
 <td class="content">
-Predicates are static methods provided by <a href="http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/P.html">P</a> and <a href="http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/TextP.html">TextP</a>.
+Predicates are used to compare values based on equality, ranges or certain patterns. All TinkerPop predicates
+are implemented as static methods; a full list of TinkerPop predicates can be found in the JavaDocs for
+<a href="http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/P.html">P</a> and
+<a href="http://tinkerpop.apache.org/javadocs/current/core/org/apache/tinkerpop/gremlin/process/traversal/TextP.html">TextP</a>.
 </td>
 </tr>
 </table>
