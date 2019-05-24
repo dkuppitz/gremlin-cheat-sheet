@@ -3,7 +3,7 @@
 :email: me@gremlin.guru
 :nofooter:
 
-= Gremlin Cheat Sheet
+= Gremlin Cheat Sheet 101
 
 == Read-Only Traversals
 
@@ -263,3 +263,5 @@ gremlin> g.V().outE().inV().path().by('name').by(label)
 ==>[datastax,likes,tinkerpop]
 ==>[dse graph,uses,tinkerpop]
 ----
+
+link:102.html[Gremlin Cheat Sheet 102 (Advanced Steps)]

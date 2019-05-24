@@ -1,0 +1,116 @@
+:pdf-page-size: [8.25in, 100in]
+:author: Daniel Kuppitz
+:email: me@gremlin.guru
+:nofooter:
+
+= Gremlin Cheat Sheet 102
+
+== Paths
+
+[[path-filters]]
+=== Path Filters
+
+[options="header"]
+|==========================================================================================================
+| Steps          | Meaning
+| `simplePath()` | keep simple, non-cyclic paths (no element must appear twice or more in the current path)
+| `cyclicPath()` | keep cyclic paths (at least one element must appear twice or more in the current path)
+|==========================================================================================================
+
+==== Examples
+
+[source,groovy]
+----
+gremlin> g = TinkerFactory.createModern().traversal()
+==>graphtraversalsource[tinkergraph[vertices:6 edges:6], standard]
+gremlin> g.V(1).out().in().simplePath().path()
+==>[v[1],v[3],v[4]]
+==>[v[1],v[3],v[6]]
+gremlin> g.V(1).out().in().cyclicPath().path()
+==>[v[1],v[3],v[1]]
+==>[v[1],v[2],v[1]]
+==>[v[1],v[4],v[1]]
+----
+
+== Variables
+
+[[path-local-variables]]
+=== Path-local Variables
+
+[options="header"]
+|==================================================================================
+| Steps                               | Meaning
+| `sack(operator)`                    | assign or compute a path-local variable
+| `sack()`                            | emit the current sack value
+| `as(label)...select(Pop, label)`    | select values from previously labeled steps
+|==================================================================================
+
+==== Examples
+
+[source,groovy]
+----
+gremlin> g = TinkerFactory.createModern().traversal()
+==>graphtraversalsource[tinkergraph[vertices:6 edges:6], standard]
+gremlin> g.V(1).
+......1>   sack(assign).
+......2>     by("age").
+......3>   out("knows").
+......4>   sack(sum).
+......5>     by("age").
+......6>   sack().
+......7>   path().
+......8>     by("age").by("age").by()
+==>[29,27,56]
+==>[29,32,61]
+gremlin> g.V(1).as("a").out("knows").as("a").
+......1>   select(last, "a")
+==>v[2]
+==>v[4]
+gremlin> g.V(1).as("a").out("knows").as("a").
+......1>   select(first, "a")
+==>v[1]
+==>v[1]
+gremlin> g.V(1).as("a").out("knows").as("a").
+......1>   select(all, "a")
+==>[v[1],v[2]]
+==>[v[1],v[4]]
+----
+
+== Pattern Matching
+
+[options="header"]
+|=====================================================================================================================================
+| Steps                               | Meaning
+| `match(traversals)`                 | attempts to find matches for the provided patterns in the underlying graph
+| `where(traversal)`                  | puts contraints on labeled steps
+|=====================================================================================================================================
+
+=== Examples
+
+[source,groovy]
+----
+gremlin> g = TinkerFactory.createGratefulDead().traversal()
+==>graphtraversalsource[tinkergraph[vertices:808 edges:8049], standard]
+gremlin> g.V().match(
+......1>     __.as("a").has("name", "Garcia"),
+......2>     __.as("a").in("writtenBy").as("b"),
+......3>     __.as("a").in("sungBy").as("b")).
+......4>   select("b").values("name")
+==>CREAM PUFF WAR
+==>CRYPTICAL ENVELOPMENT
+gremlin> g.V().match(
+......1>     __.as("a").in("writtenBy").as("b"),
+......2>     __.as("a").in("sungBy").as("b")).
+......3>   where(__.as("a").has("name", "Garcia")).
+......4>   select("b").values("name")
+==>CREAM PUFF WAR
+==>CRYPTICAL ENVELOPMENT
+gremlin> g.V().has("artist","name","Garcia").as("a").
+......1>   in("writtenBy").as("b").
+......2>   where(__.as("a").in("sungBy").as("b")).
+......3>   values("name")
+==>CREAM PUFF WAR
+==>CRYPTICAL ENVELOPMENT
+----
+
+link:101.html[Gremlin Cheat Sheet 101 (Basic Steps)]
